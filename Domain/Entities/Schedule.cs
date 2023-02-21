@@ -3,7 +3,7 @@ using Domain.Exceptions;
 
 namespace Domain.Entities
 {
-    public class Scheduler : BaseAuditableEntity
+    public class Schedule : BaseAuditableEntity
     {
 
         public required Guid Id { get; set; }

@@ -11,7 +11,7 @@ namespace Domain.UnitTests
         public void Scheduler_ShouldContructScheduler()
         {
             //arrange
-            Faker<Scheduler> schedulerFaker = new Faker<Scheduler>()
+            Faker<Schedule> schedulerFaker = new Faker<Schedule>()
                 .RuleFor(s => s.Id, f => f.Random.Guid())
                 .RuleFor(s => s.Name, f => f.Name.FullName())
                 .RuleFor(s => s.Description, f => f.Name.FullName())
@@ -22,7 +22,7 @@ namespace Domain.UnitTests
             //act
             var scheduler = schedulerFaker.Generate();
             //assert
-            scheduler.Should().BeAssignableTo<Scheduler>();
+            scheduler.Should().BeAssignableTo<Schedule>();
 
         }
 
@@ -30,7 +30,7 @@ namespace Domain.UnitTests
         public void Scheduler_ShouldNotContructSchedulerWithInvertedDates()
         {
             //arrange
-            var schedulerFaker = new Faker<Scheduler>()
+            var schedulerFaker = new Faker<Schedule>()
                 .RuleFor(s => s.Id, f => f.Random.Guid())
                 .RuleFor(s => s.Name, f => f.Name.FullName())
                 .RuleFor(s => s.Description, f => f.Name.FullName())

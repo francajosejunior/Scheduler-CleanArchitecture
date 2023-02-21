@@ -5,7 +5,7 @@ namespace Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<Scheduler> Scheduler { get; }
+    DbSet<Schedule> Schedule { get; }
 
     DbSet<User> User { get; }
 
