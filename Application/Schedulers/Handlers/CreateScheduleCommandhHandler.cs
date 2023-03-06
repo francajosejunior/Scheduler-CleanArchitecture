@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Schedulers.Handlers
 {
-    public class CreateScheduleCommandhHandler : IRequestHandler<SaveScheduleCommand>
+    public class CreateScheduleCommandhHandler : IRequestHandler<CreateScheduleCommand>
     {
 
         private readonly IApplicationDbContext _context;
@@ -16,10 +16,10 @@ namespace Application.Schedulers.Handlers
             _context = context;
         }
 
-        public async Task Handle(SaveScheduleCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateScheduleCommand request, CancellationToken cancellationToken)
         {
 
-            Schedule schedule = new Schedule
+            Schedule schedule = new()
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
