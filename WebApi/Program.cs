@@ -1,7 +1,9 @@
 
 
 using Application;
+using Application.Interfaces.Common;
 using Repository;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddRepository(builder.Configuration);
-builder.Services.AddApplicationServices(builder.Configuration); 
+builder.Services.AddApplicationServices(builder.Configuration);
+
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 var app = builder.Build();
 

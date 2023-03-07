@@ -37,7 +37,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         T existing = table.Find(id)!;
         table.Remove(existing);
     }
-    public void Save()
+    public void Commit()
     {
         _context.SaveChanges();
     }

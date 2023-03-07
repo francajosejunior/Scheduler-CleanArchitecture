@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Schedulers.Commands
 {
-    public class CreateScheduleCommand : IRequest
+    public class CreateScheduleCommand : IRequest<Guid>
     {
         public string Name { get; set; }
         public string? Description { get; set; }
