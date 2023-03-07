@@ -1,28 +1,22 @@
 
 
-using Application.Interfaces.Repository.Generic;
-using Domain.Entities;
+using Application;
 using Repository;
-using Repository.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
-
-
-builder.Services.AddScoped<IGenericRepository<Schedule>, GenericRepository<Schedule>>();
-builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
-
 builder.Services.AddRepository(builder.Configuration);
-
+builder.Services.AddApplicationServices(builder.Configuration); 
 
 var app = builder.Build();
 

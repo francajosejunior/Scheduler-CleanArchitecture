@@ -1,7 +1,6 @@
-﻿using Application.Users.Commands;
-using MediatR;
+﻿using MediatR;
 
-namespace Application.Users.Handlers
+namespace Application.Users.Commands
 {
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {

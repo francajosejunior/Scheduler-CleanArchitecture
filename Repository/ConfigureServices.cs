@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Interfaces.Repository.Generic;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Repository.Generic;
 
 namespace Repository
 {
@@ -13,6 +11,8 @@ namespace Repository
     {
         public static IServiceCollection AddRepository(this IServiceCollection services, IConfiguration configuration)
         {
+
+            #region |Context|
             services.AddDbContext<ApplicationDbContext>(options =>
                options
                .UseLazyLoadingProxies()
@@ -22,7 +22,11 @@ namespace Repository
                );
 
             services.AddScoped<ApplicationDbContextInitialiser>();
+            #endregion
 
+            services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
+            services.AddScoped<IGenericRepository<Schedule>, GenericRepository<Schedule>>();
+            services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 
 
             return services;

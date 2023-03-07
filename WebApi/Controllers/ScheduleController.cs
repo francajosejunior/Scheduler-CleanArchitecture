@@ -1,15 +1,11 @@
+using Application.Schedulers.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class ScheduleController : ControllerBase
+    public class ScheduleController : ApiControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+
 
         private readonly ILogger<ScheduleController> _logger;
 
@@ -19,9 +15,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet(Name = "Get")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok("Hi");
+
+            var list = await Mediator.Send(new GetAllSchedulesQuery());
+            return Ok(list);
         }
     }
 }
