@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Exceptions;
+﻿using Application.Exceptions;
+using Application.Interfaces.Repository;
 using Application.Schedulers.Commands;
 using Domain.Entities;
 using MediatR;

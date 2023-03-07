@@ -17,7 +17,7 @@ namespace Domain.UnitTests
                 .RuleFor(s => s.Description, f => f.Name.FullName())
                 .RuleFor(s => s.StartsAt, f => f.Date.Past())
                 .RuleFor(s => s.EndsAt, f => f.Date.Future())
-                .RuleFor(s => s.Tags, f => f.Lorem.Paragraph().Split(" "));
+                .RuleFor(s => s.Tags, f => f.Lorem.Paragraph().Split(" ").ToList().Select(x => new Tag { Description = x }));
 
             //act
             var scheduler = schedulerFaker.Generate();
@@ -36,7 +36,7 @@ namespace Domain.UnitTests
                 .RuleFor(s => s.Description, f => f.Name.FullName())
                 .RuleFor(s => s.StartsAt, f => f.Date.Future())
                 .RuleFor(s => s.EndsAt, f => f.Date.Past())
-                .RuleFor(s => s.Tags, f => f.Lorem.Paragraph().Split(" "));
+                .RuleFor(s => s.Tags, f => f.Lorem.Paragraph().Split(" ").ToList().Select(x => new Tag { Description = x }));
 
             //act
             Action assertion = () => { var scheduler = schedulerFaker.Generate(); };

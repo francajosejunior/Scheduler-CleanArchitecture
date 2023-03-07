@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Exceptions;
+﻿using Application.Exceptions;
+using Application.Interfaces.Repository;
 using Application.Schedulers.Commands;
 using Domain.Entities;
 using MediatR;
@@ -28,7 +28,7 @@ namespace Application.Schedulers.Handlers
                 EndsAt = request.EndsAt,
                 Created = DateTime.Now,
                 CreatedBy = request.User,
-                Tags = request.Tags,
+                Tags = Tag.FromListString(request.Tags),
             };
 
             _context.Schedule.Add(schedule);
